@@ -83,3 +83,18 @@ table td {
     border-bottom: 0;
   }
 }
+
+/* -------------- Hide Popup Scrollbar --------------- */
+/* -------------- Hide Popup Scrollbar --------------- */
+
+.edit-scroll::-webkit-scrollbar {
+  display: none !important;
+}
+
+.edit-scroll::-webkit-scrollbar-track {
+  display: none !important;
+}
+
+.edit-scroll::-webkit-scrollbar-thumb {
+  display: none !important;
+}

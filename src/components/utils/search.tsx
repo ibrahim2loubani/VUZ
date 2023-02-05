@@ -3,20 +3,17 @@ import type { Character } from '../../types'
 import jsonData from '../../data/characters.json'
 const data: Character[] = jsonData as Character[]
 
-const Search = () => {
+interface SearchProps {
+  search: (type: string, search: string) => void
+}
+
+const Search = ({ search }: SearchProps) => {
   const [searchValue, setSearchValue] = useState('')
-  const [filteredData, setFilteredData] = useState<Character[]>([])
 
   const handleSearch = (event: any) => {
+    search('search', event.target.value)
     setSearchValue(event.target.value)
   }
-
-  useEffect(() => {
-    const filteredArray = data.filter((item) => {
-      return item.name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
-    })
-    setFilteredData(filteredArray)
-  }, [searchValue])
 
   return (
     <div className="w-full flex flex-col justify-center items-center py-5">

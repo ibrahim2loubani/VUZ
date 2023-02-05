@@ -7,9 +7,9 @@ interface TableProps {
 }
 
 const Table = ({ data }: TableProps) => {
-  console.log('🚀 ~ file: table.tsx:9 ~ Table ~ data', data)
+  // console.log('🚀 ~ file: table.tsx:9 ~ Table ~ data', data)
   data.map((item: any) => {
-    console.log('🚀 ~ file: table.tsx:11 ~ data.map ~ item', item)
+    // console.log('🚀 ~ file: table.tsx:11 ~ data.map ~ item', item)
   })
   const columns = [
     'Character',
@@ -81,17 +81,17 @@ const Table = ({ data }: TableProps) => {
             </tr>
           </thead>
           <tbody className="rounded-md shadow-table">
-            {data &&
-              data.length &&
-              data.map((value: any, index: number) => (
-                <tr key={index}>
-                  {columns?.map((name: string, index1: number) => (
-                    <td key={index1} data-label={name}>
-                      value[name]
-                    </td>
-                  ))}
-                </tr>
-              ))}
+            {data && data.length
+              ? data.map((value: any, index: number) => (
+                  <tr key={index}>
+                    {columns?.map((name: string, index1: number) => (
+                      <td key={index1} data-label={name}>
+                        value[name]
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              : null}
           </tbody>
         </table>
       </div>
