@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface TagPros {
   tagName: string
   filter: (name: string) => void
+  clearAll: boolean
 }
 
-const Tag = ({ tagName, filter }: TagPros) => {
+const Tag = ({ tagName, filter, clearAll }: TagPros) => {
   const [active, setActive] = useState(false)
 
   const tagStyle =
@@ -17,6 +18,10 @@ const Tag = ({ tagName, filter }: TagPros) => {
     setActive(!active)
     filter(name)
   }
+
+  useEffect(() => {
+    if (clearAll) setActive(false)
+  }, [clearAll])
 
   return (
     <div

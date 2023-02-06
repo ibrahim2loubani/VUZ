@@ -1,4 +1,3 @@
-import React from 'react'
 import type { CharacterAbility } from '../../types'
 
 const SingleStat = ({ abilityName, abilityScore }: CharacterAbility) => {
@@ -23,5 +22,3 @@ const SingleStat = ({ abilityName, abilityScore }: CharacterAbility) => {
 }
 
 export default SingleStat
-
-// ! remove repeated code

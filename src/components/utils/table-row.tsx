@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Character, CharacterTag, CharacterAbility } from '../../types'
 
 interface RowProps {
   data: Character
+  champion: (champ: Character, type: string) => void
+  count: number
+  selected: Character[]
 }
 
-const TableRow = ({ data }: RowProps) => {
+const TableRow = ({ data, champion, count, selected }: RowProps) => {
   const [isChecked, setIsChecked] = useState(false)
   const [abilities, setAbilities] = useState({
     Power: 0,
@@ -24,7 +27,17 @@ const TableRow = ({ data }: RowProps) => {
   }
 
   const toggleCheck = () => {
-    setIsChecked(!isChecked)
+    if (isChecked) {
+      champion(data, 'remove')
+      setIsChecked(!isChecked)
+    } else {
+      if (count === 6) {
+        alert('Your squad is Full!')
+      } else {
+        champion(data, 'add')
+        setIsChecked(!isChecked)
+      }
+    }
   }
 
   useEffect(() => {
@@ -39,6 +52,11 @@ const TableRow = ({ data }: RowProps) => {
       setAbilities(values)
     }
   }, [])
+
+  useEffect(() => {
+    let exist = selected.some((champ) => champ.id === data.id)
+    if (!exist && isChecked) setIsChecked(!isChecked)
+  }, [selected])
 
   return (
     <tr

@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import type { Character } from '../../types'
 import jsonData from '../../data/characters.json'
 const data: Character[] = jsonData as Character[]
 
 interface SearchProps {
-  search: (type: string, search: string) => void
+  search: (search: string) => void
+  clear: boolean
 }
 
-const Search = ({ search }: SearchProps) => {
+const Search = ({ search, clear }: SearchProps) => {
   const [searchValue, setSearchValue] = useState('')
 
   const handleSearch = (event: any) => {
-    search('search', event.target.value)
+    search(event.target.value)
     setSearchValue(event.target.value)
   }
+
+  useEffect(() => {
+    if (clear) setSearchValue('')
+  }, [clear])
 
   return (
     <div className="w-full flex flex-col justify-center items-center py-5">

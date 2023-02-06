@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Header = () => {
   return (
     <nav className="fixed top-0 w-full h-20 bg-black flex justify-center pt-8 z-20">
